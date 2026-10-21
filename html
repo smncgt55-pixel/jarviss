@@ -1,0 +1,120 @@
+<div class="grid"></div>
+
+<div id="start" class="overlay">
+  <div class="overlay-box">
+    <div class="overlay-icon">🤖</div>
+    <h1>JARVISS</h1>
+    <p>Cliquez une fois pour démarrer l'interface, la voix et le micro.</p>
+    <button class="btn green" id="startBtn">DÉMARRER JARVISS</button>
+  </div>
+</div>
+
+<div class="app">
+  <header>
+    <div>
+      <div class="logo">JARVISS</div>
+      <div class="version">PERSONAL ASSISTANT // LIVECODES</div>
+    </div>
+    <div class="top-actions">
+      <button class="btn" id="stopSpeech">🔇 Stop</button>
+      <button class="btn red" id="panicBtn">ARRÊT</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div>
+      <div class="card center">
+        <div class="label">Assistant vocal</div>
+        <div class="orb-zone">
+          <div class="ring ring3"></div><div class="ring ring2"></div><div class="ring"></div>
+          <div class="orb" id="orb"></div>
+        </div>
+        <div class="status" id="status">En attente...</div>
+        <div class="response" id="response">Bonjour monsieur.</div>
+        <div class="mic-state" id="micState">Micro : initialisation</div>
+        <div class="input-row">
+          <input id="commandInput" placeholder="Commande pour Jarviss...">
+          <button class="btn" id="sendBtn">Envoyer</button>
+        </div>
+        <div class="badges">
+          <span class="badge" id="voiceBadge">VOIX</span>
+          <span class="badge" id="micBadge">MICRO</span>
+          <span class="badge" id="gpuBadge">GPU</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <div class="section-title">État système</div>
+        <div class="panel-grid">
+          <div class="stat"><div class="stat-name">HEURE</div><div class="stat-value" id="clock">--:--:--</div></div>
+          <div class="stat"><div class="stat-name">DATE</div><div class="stat-value" id="date">--</div></div>
+          <div class="stat"><div class="stat-name">COMMANDES</div><div class="stat-value" id="commandCount">0</div></div>
+          <div class="stat"><div class="stat-name">MODE</div><div class="stat-value" id="modeDisplay">NORMAL</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="section-title">Commandes rapides</div>
+        <div class="command-grid">
+          <button class="command" data-cmd="quelle heure est-il">Heure</button>
+          <button class="command" data-cmd="quelle est la date">Date</button>
+          <button class="command" data-cmd="lance un minuteur de 1 minute">Minuteur</button>
+          <button class="command" data-cmd="pile ou face">Pile/face</button>
+          <button class="command" data-cmd="mode concentration">Concentration</button>
+          <button class="command" data-cmd="mode nuit">Nuit</button>
+          <button class="command" data-cmd="change le thème en vert">Thème vert</button>
+          <button class="command" data-cmd="aide">Aide</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <div class="section-title">Notes (effacées chaque jour)</div>
+        <textarea id="noteInput" placeholder="Écrivez une note..."></textarea>
+        <div class="top-actions" style="margin-top:8px">
+          <button class="btn" id="addNote">Ajouter</button>
+          <button class="btn" id="clearNotes">Effacer</button>
+        </div>
+        <div class="note-list" id="noteList"></div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <div class="section-title">Mémoire &amp; curiosité</div>
+        <div class="top-actions">
+          <button class="btn green" id="curiosityBtn">Activer la curiosité</button>
+          <button class="btn" id="memRefreshBtn">Actualiser</button>
+          <button class="btn" id="memExportBtn">Exporter</button>
+          <button class="btn red" id="memClearBtn">Tout effacer</button>
+        </div>
+        <div class="note-list" id="memList"></div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <div class="section-title">Historique</div>
+        <div class="log" id="log"></div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <div class="section-title">Paramètres</div>
+        <label>Vitesse</label><input type="range" id="rate" min=".5" max="2" step=".05" value="1">
+        <label>Hauteur</label><input type="range" id="pitch" min=".5" max="2" step=".05" value=".85">
+        <label>Volume</label><input type="range" id="volume" min="0" max="1" step=".05" value="1">
+        <label>Voix</label><select id="voiceSelect"></select>
+        <label>IA locale (gratuite)</label>
+        <select id="aiModelSelect">
+          <option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Rapide (1 Md)</option>
+          <option value="Llama-3.2-3B-Instruct-q4f16_1-MLC" selected>Équilibré (3 Md)</option>
+          <option value="Llama-3.1-8B-Instruct-q4f16_1-MLC">Intelligent (8 Md, ~4,5 Go)</option>
+        </select>
+        <div id="aiStatus" class="mic-state">Modèle IA : non chargé</div>
+        <div class="top-actions">
+          <button class="btn" id="testVoice">Tester la voix</button>
+          <button class="btn green" id="loadAiBtn">Charger l'IA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
